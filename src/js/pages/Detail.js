@@ -1,36 +1,37 @@
 import React from "react";
-import Chance from 'chance';
+import ajax from 'superagent';
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: chance.first(),
-      country: chance.country({ full: true })
-    };
+    this.state = { commits: [] };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return false;
-  }
-
-  buttonClicked() {
-    console.log('Button was clicked!');
-    const newState = {
-      name: chance.first()
-    };
-    this.setState(newState);
+  componentWillMount() {
+    ajax.get('https://api.github.com/repos/facebook/react/commits')
+      .end((error, response) => {
+        if (!error && response) {
+          console.dir(response.body);
+          this.setState({ commits: response.body });
+        } else {
+          console.log('There was an error fetching from Github', error);
+        }
+      }
+      );
   }
 
   render() {
     return (
       <div>
-        <p>This is JSX being converted to HTML!</p>
-        <p>{this.props.message}</p>
-        <p>Hello, {this.state.name}!</p>
-        <p>You're from {this.state.country}.</p>
-        <button onClick={this.buttonClicked.bind(this)}>Meet Someone New</button>
+        {this.state.commits.map((commit, index) => {
+          const author = commit.author ? commit.author.login : 'Anonymous';
+
+          return (<p key={index}>
+            <strong>{author}</strong>:
+            <a href={commit.html_url}>{commit.commit.message}</a>.
+            </p>);
+        })}
       </div>
     );
   }
