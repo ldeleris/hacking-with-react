@@ -2,9 +2,25 @@ import React from "react";
 import Chance from 'chance';
 
 class Detail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: chance.first(),
+      country: chance.country({ full: true })
+    };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return false;
+  }
+
   buttonClicked() {
     console.log('Button was clicked!');
-    this.forceUpdate();
+    const newState = {
+      name: chance.first()
+    };
+    this.setState(newState);
   }
 
   render() {
@@ -12,8 +28,8 @@ class Detail extends React.Component {
       <div>
         <p>This is JSX being converted to HTML!</p>
         <p>{this.props.message}</p>
-        <p>Hello, {chance.first()}!</p>
-        <p>You're from {chance.country({ full: true })}.</p>
+        <p>Hello, {this.state.name}!</p>
+        <p>You're from {this.state.country}.</p>
         <button onClick={this.buttonClicked.bind(this)}>Meet Someone New</button>
       </div>
     );
