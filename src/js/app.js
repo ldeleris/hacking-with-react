@@ -2,15 +2,20 @@ console.log('React is up and running!');
 
 import React from "react";
 import ReactDOM from "react-dom";
+import { Router, Route, IndexRoute } from 'react-router';
+import createHistory from 'history/createHashHistory';
+
 
 import Detail from "./pages/Detail";
+import createHashHistory from "history/createHashHistory";
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <Detail message="This coming from props!" />
-      </div>
+      <Router history={createHistory({ queryKey: false })}
+        onUpdate={() => window.scrollTo(0, 0)}>
+        <Route path="/" component={Detail} />
+      </Router>
     );
   }
 }
