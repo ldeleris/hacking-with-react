@@ -14,42 +14,24 @@ class Detail extends React.Component {
   }
 
   componentWillMount() {
-    ajax.get('https://api.github.com/repos/facebook/react/commits')
+    this.fetchFeed('commits');
+    this.fetchFeed('forks');
+    this.fetchFeed('pulls');
+  }
+
+  fetchFeed(type) {
+    ajax.get(`https://api.github.com/repos/facebook/react/${type}`)
       .end((error, response) => {
         if (!error && response) {
-          this.setState({ commits: response.body });
+          this.setState({ [type]: response.body });
         } else {
-          console.log('There was an error fetching commits from Github', error);
-        }
-      });
-    ajax.get('https://api.github.com/repos/facebook/react/forks')
-      .end((error, response) => {
-        if (!error && response) {
-          this.setState({ forks: response.body });
-        } else {
-          console.log('There was an error fetching forks from Github', error);
-        }
-      });
-    ajax.get('https://api.github.com/repos/facebook/react/pulls')
-      .end((error, response) => {
-        if (!error && response) {
-          this.setState({ pulls: response.body });
-        } else {
-          console.log('There was an error fetching pulls from Github', error);
+          console.log(`Error fetching ${type}`, error);
         }
       });
   }
 
-  showCommits() {
-    this.setState({ mode: 'commits' });
-  }
-
-  showForks() {
-    this.setState({ mode: 'forks' });
-  }
-
-  showPulls() {
-    this.setState({ mode: 'pulls' });
+  selectMode(mode) {
+    this.setState({ mode });
   }
 
   renderCommits() {
@@ -109,9 +91,9 @@ class Detail extends React.Component {
     }
 
     return (<div>
-      <button onClick={this.showCommits.bind(this)}>Show Commits</button>
-      <button onClick={this.showForks.bind(this)}>Show Forks</button>
-      <button onClick={this.showPulls.bind(this)}> Show Pulls</button>
+      <button onClick={this.selectMode.bind(this, 'commits')}>Show Commits</button>
+      <button onClick={this.selectMode.bind(this, 'forks')}>Show Forks</button>
+      <button onClick={this.selectMode.bind(this, 'pulls')}> Show Pulls</button>
       {content}
     </div>);
   }
