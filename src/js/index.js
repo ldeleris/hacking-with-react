@@ -2,23 +2,14 @@ console.log('React is up and running!');
 
 import React from "react";
 import ReactDOM from "react-dom";
-import {
-  HashRouter as Router,
-  Route,
-  IndexRoute
-} from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 //import history from './pages/history';
 
-import App from './pages/App.js'
-import Detail from "./pages/Detail";
-import List from "./pages/List";
+import routes from './routes.js';
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Route exact path="/" component={List} />
-      <Route path="/detail/:repo" component={Detail} />
-    </div>
+  <Router onUpdate={() => window.scrollTo(0, 0)}>
+    {routes}
   </Router >,
   document.getElementById('app')
 );
