@@ -1,5 +1,6 @@
 import React from "react";
 import ajax from 'superagent';
+import { Link } from 'react-router-dom';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class Detail extends React.Component {
           const author = commit.author ? commit.author.login : 'Anonymous';
 
           return (<p key={index}>
-            <strong>{author}</strong>:
+            <strong><User name={author} /></strong>:
             <a href={commit.html_url}>{commit.commit.message}</a>.
             </p>);
         })}
@@ -59,7 +60,7 @@ class Detail extends React.Component {
           const owner = fork.owner ? fork.owner.login : 'Anonymous';
 
           return (<p key={index}>
-            <strong>{owner}</strong>:
+            <strong><User name={owner} /></strong>:
             <a href={fork.html_url}>{fork.html_url}</a> at {fork.created_at}.
             </p>);
         })}
@@ -74,7 +75,7 @@ class Detail extends React.Component {
           const user = pull.user ? pull.user.login : 'Anonymous';
 
           return (<p key={index}>
-            <strong>{user}</strong>:
+            <strong><User name={user} /></strong>:
             <a href={pull.html_url}>{pull.body}</a>.
             </p>);
         })}
@@ -100,6 +101,14 @@ class Detail extends React.Component {
       {content}
     </div>);
   }
+}
+
+
+const User = ({ name }) => {
+  let url;
+  url = `/user/${name}`;
+  console.log(url);
+  return <Link to={url}>{name}</Link>;
 }
 
 export default Detail;
