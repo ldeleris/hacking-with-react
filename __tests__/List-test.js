@@ -1,4 +1,4 @@
-jest.autoMockOff();
+jest.disableAutomock();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -19,8 +19,5 @@ describe('List', () => {
     const repos = TestUtils.scryRenderedDOMComponentsWithTag(rendered, 'li');
 
     expect(repos.length).toEqual(3);
-  });
-  it('do nothing', () => {
-    expect(true).toEqual(true);
   });
 });
