@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import ajax from 'superagent';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -40,7 +40,6 @@ class Detail extends React.Component {
           console.log(`Error fetching ${type}`, error);
         }
       });
-
   }
 
   selectMode(mode) {
@@ -56,7 +55,7 @@ class Detail extends React.Component {
           return (<p key={index} className="github">
             <strong><User name={author} /></strong>:
             <a href={commit.html_url}>{commit.commit.message}</a>.
-            </p>);
+                  </p>);
         })}
       </div>
     );
@@ -71,7 +70,7 @@ class Detail extends React.Component {
           return (<p key={index} className="github">
             <strong><User name={owner} /></strong>:
             <a href={fork.html_url}>{fork.html_url}</a> at {fork.created_at}.
-            </p>);
+                  </p>);
         })}
       </div>
     );
@@ -86,7 +85,7 @@ class Detail extends React.Component {
           return (<p key={index} className="github">
             <strong><User name={user} /></strong>:
             <a href={pull.html_url}>{pull.body}</a>.
-            </p>);
+                  </p>);
         })}
       </div>
     );
@@ -105,16 +104,26 @@ class Detail extends React.Component {
 
     return (<div>
       <p>You are here: <NavLink exact to="/" activeClassName="active" activeStyle={{ fontWeight: 'bold' }}>Home </NavLink>
-        > {this.props.match.params.repo}</p>
+        > {this.props.match.params.repo}
+      </p>
 
-      <button onClick={this.selectMode.bind(this, 'commits')}
-        name="commits">Show Commits</button>
-      <button onClick={this.selectMode.bind(this, 'forks')}
-        name="forks">Show Forks</button>
-      <button onClick={this.selectMode.bind(this, 'pulls')}
-        name="pulls">Show Pulls</button>
+      <button
+        onClick={this.selectMode.bind(this, 'commits')}
+        name="commits"
+      >Show Commits
+      </button>
+      <button
+        onClick={this.selectMode.bind(this, 'forks')}
+        name="forks"
+      >Show Forks
+      </button>
+      <button
+        onClick={this.selectMode.bind(this, 'pulls')}
+        name="pulls"
+      >Show Pulls
+      </button>
       {content}
-    </div >);
+            </div >);
   }
 }
 
@@ -124,6 +133,6 @@ const User = ({ name }) => {
   url = `/user/${name}`;
   console.log(url);
   return <Link to={url}>{name}</Link>;
-}
+};
 
 export default Detail;

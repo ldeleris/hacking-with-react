@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import Chance from 'chance';
 
 class Arrays extends React.Component {
@@ -10,7 +10,7 @@ class Arrays extends React.Component {
     for (let i = 0; i < 10; i++) {
       people.push({
         name: chance.first(),
-        country: chance.country({ full: true })
+        country: chance.country({ full: true }),
       });
     }
 

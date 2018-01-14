@@ -7,7 +7,7 @@ class User extends React.Component {
     super(props);
 
     this.state = {
-      events: []
+      events: [],
     };
   }
 
@@ -26,7 +26,8 @@ class User extends React.Component {
     return (<div>
       <p>You are here:&nbsp;
         <NavLink exact to="/" activeClassName="active">Home </NavLink>
-        > {this.props.match.params.user}</p>
+        > {this.props.match.params.user}
+      </p>
       <ul>
         {this.state.events.map((event, index) => {
           const eventType = event.type;
@@ -37,11 +38,11 @@ class User extends React.Component {
             <li key={index}>
               <strong>{reposName}</strong>: {eventType}
               at {creationDate}.
-              </li>
+            </li>
           );
         })}
       </ul>
-    </div>);
+            </div>);
   }
 }
 
