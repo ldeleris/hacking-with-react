@@ -1,0 +1,3 @@
+# Example from Hacking with React de Paul Hudson
+
+## Get started with React, React Router, Jest, Webpack, ES6 ...
