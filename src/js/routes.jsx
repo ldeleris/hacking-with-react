@@ -4,10 +4,10 @@ import {
   Route,
 } from 'react-router-dom';
 
-import App from './pages/App';
-import List from './pages/List';
-import Detail from './pages/Detail';
-import User from './pages/User';
+import App from './pages/App.jsx';
+import List from './pages/List.jsx';
+import Detail from './pages/Detail.jsx';
+import User from './pages/User.jsx';
 
 const routes = (
   <div>

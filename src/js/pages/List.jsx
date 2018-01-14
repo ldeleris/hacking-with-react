@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class List extends React.Component {
   render() {
@@ -16,5 +17,9 @@ class List extends React.Component {
     );
   }
 }
+
+List.propTypes = {
+  children: PropTypes.object,
+};
 
 export default List;

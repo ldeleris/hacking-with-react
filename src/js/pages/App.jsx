@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
   render() {
@@ -9,5 +10,9 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.node,
+};
 
 export default App;

@@ -1,7 +1,7 @@
 {
-  "name": "webpack-react-tutorial",
+  "name": "hacking-with-react",
   "version": "1.0.0",
-  "description": "tuto",
+  "description": "tuto for react/webpack/babel/jest/eslint",
   "main": "index.js",
   "scripts": {
     "test": "jest --verbose",

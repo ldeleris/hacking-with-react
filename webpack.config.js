@@ -4,10 +4,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 module.exports = {
-  entry: ["./src/js/index.js"],
+  entry: ["./src/js/index.jsx"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/[name].js"
+    filename: "js/[name].jsx"
   },
   devServer: {
     contentBase: "./dist"
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"

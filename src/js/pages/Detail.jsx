@@ -1,6 +1,7 @@
 import React from 'react';
 import ajax from 'superagent';
 import { Link, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Detail extends React.Component {
   constructor(props) {
@@ -123,7 +124,7 @@ class Detail extends React.Component {
       >Show Pulls
       </button>
       {content}
-            </div >);
+    </div >);
   }
 }
 
@@ -133,6 +134,10 @@ const User = ({ name }) => {
   url = `/user/${name}`;
   console.log(url);
   return <Link to={url}>{name}</Link>;
+};
+
+Detail.propTypes = {
+  children: PropTypes.object,
 };
 
 export default Detail;

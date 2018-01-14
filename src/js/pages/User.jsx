@@ -1,6 +1,7 @@
 import React from 'react';
 import ajax from 'superagent';
 import { NavLink, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class User extends React.Component {
   constructor(props) {
@@ -42,8 +43,12 @@ class User extends React.Component {
           );
         })}
       </ul>
-            </div>);
+    </div>);
   }
 }
+
+User.propTypes = {
+  children: PropTypes.object,
+};
 
 export default User;
